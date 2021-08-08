@@ -6,7 +6,7 @@ from app.views import MpViewSet
 # create a new router
 router = routers.DefaultRouter()
 # register our viewsets
-router.register(r'mps', MpViewSet) #register "/todos" routes
+router.register(r'mps', MpViewSet) #register "/mps" routes
 
 
 urlpatterns = [
