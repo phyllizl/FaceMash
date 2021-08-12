@@ -6,7 +6,7 @@ from .serializers import MpSerializer
 
 class MpViewSet(viewsets.ModelViewSet):
     ## The Main Query for the index route
-    queryset = Mp.objects.all()
+    queryset = Mp.objects.all().order_by('-rank')
     # The serializer class for serializing output
     serializer_class = MpSerializer
     # optional permission class set permission level

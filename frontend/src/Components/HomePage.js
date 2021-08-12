@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import RankingList from "./Rankings";
+import { Route, Link, Switch } from "react-router-dom";
 
 const HomePage = () => {
 
@@ -131,15 +133,42 @@ const HomePage = () => {
 
     return (
         <>
-            <h1> Who's more Likeable? Click to Choose</h1>
-            <div>
-                <img src={chosen?.[0].image} onClick={() => elo(chosen?.[0], chosen?.[1])}/>
-                <p>{chosen?.[0].name}</p>
-            </div>
-            <div>
-                <img src={chosen?.[1].image} onClick={() => elo2(chosen?.[0], chosen?.[1])}/>
-                <p>{chosen?.[1].name}</p>
-            </div>
+            <nav className="navbar has-shadow">
+                <div className="navbar-brand">
+                    <a className="navbar-item" id="logo" href="/">
+                        Rank Ur MPs
+                    </a>
+                </div>
+
+                <div className="navbar-menu" id="nav-links">
+                    <div className="navbar-end">
+                        <a href="/ilikethis" className="navbar-item">
+                            Rankings
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+           
+            <Switch>
+                <Route exact path="/ilikethis">
+                    <RankingList/>
+                </Route>
+
+                <Route exact path='/'>
+                    <p> Were we let into Parliament for our looks? No. Will we be judge on them? Still No.</p>
+                    <h1> Who's more Likeable? Click to Choose</h1>
+                    <div>
+                        <img src={chosen?.[0].image} onClick={() => elo(chosen?.[0], chosen?.[1])}/>
+                        <p>{chosen?.[0].name}</p>
+                    </div>
+                    <div>
+                        <img src={chosen?.[1].image} onClick={() => elo2(chosen?.[0], chosen?.[1])}/>
+                        <p>{chosen?.[1].name}</p>
+                    </div>
+                </Route>
+            </Switch>
+            
         </>
     )
 }
