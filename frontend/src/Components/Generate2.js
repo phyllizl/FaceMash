@@ -13,11 +13,11 @@ const Generate2 = (prop) => {
         //console.log(everyone)
         const [random, setRandom] = useState(getRandomNum(everyone.length));
         const [random2, setRandom2] = useState(getRandomNum(everyone.length));
-        if (random2 === random) {
-            console.log('if loop triggered');
-            setRandom2(getRandomNum(everyone.length));
-        }
-        console.log(random, random2)
+        // while (random2 === random) {
+        //     console.log('while loop triggered');
+        // }
+        // setRandom2(getRandomNum(everyone.length));
+        // console.log(random, random2)
 
         let person1 = everyone[random];
         let person2 = everyone[random2];
@@ -118,7 +118,7 @@ const Generate2 = (prop) => {
         return(
             <>
                     <div className="column">
-                        <img src={person1.image} alt="image" className="image" onClick={() => elo(person1, person2)}/> 
+                        <img src={person1.image} alt="image" onClick={() => elo(person1, person2)}/> 
                         <p className="title is-4 mt-4">{person1.name}</p>
                         <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
                     </div>
@@ -126,7 +126,7 @@ const Generate2 = (prop) => {
                     <h1 className="title is-3">OR</h1>
 
                     <div className="column">
-                        <img src={person2.image} alt="image" className="image" onClick={() => elo2(person1, person2)}/>
+                        <img src={person2.image} alt="image" onClick={() => elo2(person1, person2)}/>
                         <p className="title is-4 mt-4">{person2.name}</p>
                         <a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
                     </div> 

@@ -19,7 +19,6 @@ const HomePage = () => {
             setEveryone(data)
         }
         getEveryone();
-        
     }, [])
 
     const toggle = () => {
