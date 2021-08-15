@@ -71,7 +71,7 @@ const Generate2 = (prop) => {
             },
             body: JSON.stringify({rank: person.rank}),
         });
-        //getEveryone();
+        console.log(response);
 
     }
 

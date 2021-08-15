@@ -27,7 +27,7 @@ const RankingList = ({everyone, url}) => {
                             <tr key={ele.id}>
                                 <td></td>
                                 <td><a href={ele.url} target="_blank">{ele.name}</a></td>
-                                <td> <img src={ele.image} className="mb-6 image is-64x64 smallpicture" /></td>
+                                <td> <img src={ele.image} alt="image" className="mb-6 image is-64x64 smallpicture" /></td>
                             </tr>
                         )
                     }) : null}

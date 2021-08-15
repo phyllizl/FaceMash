@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RankingList from "./Rankings";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Generate2 from "./Generate2";
 
 const HomePage = () => {
