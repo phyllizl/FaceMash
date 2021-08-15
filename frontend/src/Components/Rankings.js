@@ -1,38 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-const RankingList = () => {
-
-    const url = "http://localhost:8000/mps/";
-
-    //set state to store all MPs
-    const [everyone, setEveryone] = useState([]);
-
-    //fetch our data from our database
-    const getEveryone = async () => {
-        const response = await fetch(url);
-        const data = await response.json();
-        setEveryone(data)
-        //console.log(everyone);
-    }
+const RankingList = ({everyone, url}) => {
+   
     
-    //get our database
-    useEffect(() => {
-        getEveryone();
-    }, [])
-
-
     return (
-        <>
-            <h1>Favourite Politicians Based on Your Votes</h1>
-            {everyone.map((ele) => {
-                return(
-                    <>
-                        <img src={ele.image} />
-                        <h1>{ele.name}</h1>
-                    </>
-                )
-            })}
-        </>
+        <div className="section">
+            <h1 className="title is-2">Favourite Politicians Based on Your Votes</h1>
+            <div className="columns is-centered">
+            <table className="table">
+                <thead>
+                    <th><abbr title="Position">Pos</abbr></th>
+                    <th><abbr title="Name">Name</abbr></th>
+                    <th><abbr title="Image">Picture</abbr></th>
+                </thead>
+
+                <tfoot>
+                    <th><abbr title="Position">Pos</abbr></th>
+                    <th><abbr title="Name">Name</abbr></th>
+                    <th><abbr title="Image">Picture</abbr></th>
+                </tfoot>
+
+                <tbody>
+                    {everyone.length > 0 ? 
+                    everyone.map((ele) => {
+                        return(
+                            <tr key={ele.id}>
+                                <td></td>
+                                <td><a href={ele.url} target="_blank">{ele.name}</a></td>
+                                <td> <img src={ele.image} className="mb-6 image is-64x64 smallpicture" /></td>
+                            </tr>
+                        )
+                    }) : null}
+                </tbody>
+
+            </table>
+            </div>
+        </div>
     )
 }
 

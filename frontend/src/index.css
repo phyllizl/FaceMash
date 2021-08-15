@@ -25,3 +25,38 @@ code {
   font-size: larger;
 }
 
+img {
+  width: 200px;
+  height: 300px;
+  object-fit: fill;
+  image-rendering: -moz-crisp-edges;         /* Firefox */
+  image-rendering:   -o-crisp-edges;         /* Opera */
+  image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor; 
+}
+
+table.table {
+  counter-reset: rowNumber;
+}
+
+table.table tr:nth-child(n+1) {
+  counter-increment: rowNumber;
+}
+
+table.table tr:nth-child(n+1) td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  margin-right: 0.5em;
+}
+
+.smallpicture {
+  image-rendering: -moz-crisp-edges;         /* Firefox */
+  image-rendering:   -o-crisp-edges;         /* Opera */
+  image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
+}
+
+
+
