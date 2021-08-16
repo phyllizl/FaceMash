@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 const getRandomNum = (max) => {
@@ -10,15 +10,19 @@ const Generate2 = (prop) => {
         const url = "https://polar-stream-40791.herokuapp.com/mps/";
 
         let everyone = prop.props;
-        //console.log(everyone)
-        const [random, setRandom] = useState(getRandomNum(everyone.length));
-        const [random2, setRandom2] = useState(getRandomNum(everyone.length));
-        // while (random2 === random) {
-        //     console.log('while loop triggered');
-        // }
-        // setRandom2(getRandomNum(everyone.length));
-        // console.log(random, random2)
 
+        //generate random number
+        let getRandom1 = getRandomNum(everyone.length);
+        let getRandom2 = getRandomNum(everyone.length);
+        while (getRandom1 === getRandom2) {
+            getRandom2 = getRandomNum(everyone.length);
+            console.log('while loop triggered')
+        }
+
+        const [random, setRandom] = useState(getRandom1);
+        const [random2, setRandom2] = useState(getRandom2);
+        
+        //get your random people
         let person1 = everyone[random];
         let person2 = everyone[random2];
         console.log("persons", person1, person2)
@@ -54,11 +58,19 @@ const Generate2 = (prop) => {
         //new ranking for b if a wins
         b.rank = (Math.round(b.rank + (bk * (0 - bEstimated))));
 
+        //get new random numbers
+        getRandom1 = getRandomNum(everyone.length);
+        getRandom2 = getRandomNum(everyone.length);
+        while (getRandom1 === getRandom2) {
+            getRandom2 = getRandomNum(everyone.length);
+            console.log('while loop triggered')
+        }
+
         //call the update function to update database
         update(a);
         update(b);
-        setRandom(getRandomNum(everyone.length));
-        setRandom2(getRandomNum(everyone.length));
+        setRandom(getRandom1);
+        setRandom2(getRandom2);
         //console.log("2: ", a.name, a.rank, b.name, b.rank);
     }
 
@@ -106,19 +118,25 @@ const Generate2 = (prop) => {
         //new ranking for b if b wins
         b.rank = (Math.round(b.rank + (bk * (1 - bEstimated))));
 
-        //console.log("2: ", a.name, a.rank, b.name, b.rank);
+        //get new random numbers
+        getRandom1 = getRandomNum(everyone.length);
+        getRandom2 = getRandomNum(everyone.length);
+        while (getRandom1 === getRandom2) {
+            getRandom2 = getRandomNum(everyone.length);
+            console.log('while loop triggered')
+        }
 
         //call the update function to update database
         update(a);
         update(b);
-        setRandom(getRandomNum(everyone.length));
-        setRandom2(getRandomNum(everyone.length));
+        setRandom(getRandom1);
+        setRandom2(getRandom2);
     }
         
         return(
             <>
-                    <div className="column">
-                        <img src={person1.image} alt="image" onClick={() => elo(person1, person2)}/> 
+                    <div className="column"> 
+                        <img src={person1.image} alt={`${person1.name}`} onClick={() => elo(person1, person2)}/>
                         <p className="title is-4 mt-4">{person1.name}</p>
                         <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
                     </div>
@@ -126,7 +144,7 @@ const Generate2 = (prop) => {
                     <h1 className="title is-3">OR</h1>
 
                     <div className="column">
-                        <img src={person2.image} alt="image" onClick={() => elo2(person1, person2)}/>
+                        <img src={person2.image} alt={`${person2.name}`} onClick={() => elo2(person1, person2)}/>
                         <p className="title is-4 mt-4">{person2.name}</p>
                         <a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
                     </div> 

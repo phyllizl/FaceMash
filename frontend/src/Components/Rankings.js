@@ -14,12 +14,6 @@ const RankingList = ({everyone, url}) => {
                     <th><abbr title="Image">Picture</abbr></th>
                 </thead>
 
-                <tfoot>
-                    <th><abbr title="Position">Pos</abbr></th>
-                    <th><abbr title="Name">Name</abbr></th>
-                    <th><abbr title="Image">Picture</abbr></th>
-                </tfoot>
-
                 <tbody>
                     {everyone.length > 0 ? 
                     everyone.map((ele) => {
@@ -27,7 +21,7 @@ const RankingList = ({everyone, url}) => {
                             <tr key={ele.id}>
                                 <td></td>
                                 <td><a href={ele.url} target="_blank">{ele.name}</a></td>
-                                <td> <img src={ele.image} alt="image" className="mb-6 image is-64x64 smallpicture" /></td>
+                                <td> <img src={ele.image} alt={`${ele.name}`} className="mb-6 image is-64x64 smallpicture" /></td>
                             </tr>
                         )
                     }) : null}
