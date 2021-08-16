@@ -11,6 +11,7 @@ const RankingList = ({everyone, url}) => {
                 <thead>
                     <th><abbr title="Position">Pos</abbr></th>
                     <th><abbr title="Name">Name</abbr></th>
+                    <th><abbr title="elo">Elo Rating</abbr></th>
                     <th><abbr title="Image">Picture</abbr></th>
                 </thead>
 
@@ -21,6 +22,7 @@ const RankingList = ({everyone, url}) => {
                             <tr key={ele.id}>
                                 <td></td>
                                 <td><a href={ele.url} target="_blank">{ele.name}</a></td>
+                                <td>{ele.rank}</td>
                                 <td> <img src={ele.image} alt={`${ele.name}`} className="mb-6 image is-64x64 smallpicture" /></td>
                             </tr>
                         )
