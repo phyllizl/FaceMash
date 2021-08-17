@@ -10,13 +10,15 @@ const HomePage = () => {
 
     //set state to store all MPs
     const [everyone, setEveryone] = useState([]);
+    const [isLoading, setLoading] = useState(true);
 
     //get our database
     useEffect(() => {
         const getEveryone = async () => {
             const response = await fetch(url);
             const data = await response.json();
-            setEveryone(data)
+            setEveryone(data);
+            setLoading(false);
         }
         getEveryone();
     }, [])
@@ -57,13 +59,15 @@ const HomePage = () => {
                 </Route>
 
                 <Route exact path='/'>
-                    <p className="title is-4 my-6"> Were we let into Parliament for our looks? No. Will we be judge on them? Still No.</p>
+                    <p className="title is-4 my-6"> Were we let into Parliament for our looks? No. Will we be judged on them? Still No.</p>
                     <h1 className="title is-2 mb-6"> Who's more Likeable? Click to Choose</h1>
 
                     <div className="container">
                     <div className="columns is-mobile is-variable is-2 is-vcentered is-align-self-center">
+                    
+                    {isLoading ? <div className="container">Loading</div> : <Generate2 props={everyone} />}
 
-                    {everyone.length > 0 ? <Generate2 props={everyone} /> : null}
+                    {/* {everyone.length > 0 ? <Generate2 props={everyone} /> : <div>Loading</div>} */}
 
                     </div>
                     </div>

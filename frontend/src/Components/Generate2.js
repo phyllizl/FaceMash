@@ -25,7 +25,6 @@ const Generate2 = (prop) => {
         //get your random people
         let person1 = everyone[random];
         let person2 = everyone[random2];
-        console.log("persons", person1, person2)
 
         //Call the elo function on onClick -> (1) calculate new rank (2) call update function (put request) to update the rank in database
         //elo rating function -> If user chooses a
@@ -71,7 +70,6 @@ const Generate2 = (prop) => {
         update(b);
         setRandom(getRandom1);
         setRandom2(getRandom2);
-        //console.log("2: ", a.name, a.rank, b.name, b.rank);
     }
 
     //Function to edit mp ranking on selection
@@ -83,14 +81,11 @@ const Generate2 = (prop) => {
             },
             body: JSON.stringify({rank: person.rank}),
         });
-        console.log(response);
-
     }
 
     //We are going to try and hardcode this first. So this function will handle a situation when b is chosen. 
     //elo rating function -> If user chooses a
     const elo2 = (a, b) => {
-        //console.log("1: original rankings: ", a.name, a.rank, b.name, b.rank)
         let aEstimated = 1/(1 + 10**((b.rank - a.rank)/400));
         let bEstimated = 1/(1 + 10**((a.rank - b.rank)/400));
         let ak = 0;
@@ -136,7 +131,9 @@ const Generate2 = (prop) => {
         return(
             <>
                     <div className="column"> 
-                        <img src={person1.image} alt={`${person1.name}`} onClick={() => elo(person1, person2)}/>
+                        <div className="image-box">
+                            <img src={person1.image} alt={`${person1.name}`} onClick={() => elo(person1, person2)}/>
+                        </div>
                         <p className="title is-4 mt-4">{person1.name}</p>
                         <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
                     </div>
@@ -144,7 +141,9 @@ const Generate2 = (prop) => {
                     <h1 className="title is-3">OR</h1>
 
                     <div className="column">
-                        <img src={person2.image} alt={`${person2.name}`} onClick={() => elo2(person1, person2)}/>
+                        <div className="image-box">
+                            <img src={person2.image} alt={`${person2.name}`} onClick={() => elo2(person1, person2)}/>
+                        </div>
                         <p className="title is-4 mt-4">{person2.name}</p>
                         <a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
                     </div> 

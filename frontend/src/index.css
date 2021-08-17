@@ -29,11 +29,16 @@ img {
   width: 200px;
   height: 300px;
   object-fit: fill;
+  transform: scale(1);
   image-rendering: -moz-crisp-edges;         /* Firefox */
   image-rendering:   -o-crisp-edges;         /* Opera */
-  image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+  image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   -ms-interpolation-mode: nearest-neighbor; 
+}
+
+.image-box:hover img {
+  transform: scale(1.1);
 }
 
 .placeholder {
