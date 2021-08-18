@@ -5,3 +5,7 @@ class Mp(models.Model):
     image = models.TextField(default=None)
     url = models.TextField(default=None)
     rank = models.IntegerField(default=None)
+    snippet = models.TextField(null=True)
+    wiki = models.TextField(null=True)
+
+

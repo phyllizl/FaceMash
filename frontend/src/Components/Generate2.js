@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 
 const getRandomNum = (max) => {
@@ -7,7 +7,8 @@ const getRandomNum = (max) => {
 
 const Generate2 = (prop) => {
 
-        const url = "https://polar-stream-40791.herokuapp.com/mps/";
+        //const url = "https://polar-stream-40791.herokuapp.com/mps/";
+        const url = "http://localhost:8000/mps/";
 
         let everyone = prop.props;
 
@@ -81,6 +82,7 @@ const Generate2 = (prop) => {
             },
             body: JSON.stringify({rank: person.rank}),
         });
+        return response;
     }
 
     //We are going to try and hardcode this first. So this function will handle a situation when b is chosen. 
@@ -129,25 +131,43 @@ const Generate2 = (prop) => {
     }
         
         return(
-            <>
+            <table>
                     <div className="column"> 
-                        <div className="image-box">
-                            <img src={person1.image} alt={`${person1.name}`} onClick={() => elo(person1, person2)}/>
-                        </div>
-                        <p className="title is-4 mt-4">{person1.name}</p>
-                        <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
-                    </div>
+                        <tr>
+                            <td className="image-box my-6"><img src={person1.image} alt={`${person1.name}`} onClick={() => elo(person1, person2)}/></td>
+                            <td className="image-box my-6"><img src={person2.image} alt={`${person2.name}`} onClick={() => elo2(person1, person2)}/></td>
+                        </tr>
+                        <tr>
+                            <div className="my-3"></div>
+                        </tr>
+                        <tr>
+                            <td className="title is-4">{person1.name}</td>
+                            <td className="title is-4">{person2.name}</td>
+                        </tr>
+                        <tr>
+                            <div className="my-3"></div>
+                        </tr>
+                        <tr>
+                            <td className="subtitle is-6">{person1.snippet}</td>
+                            <td className="subtitle is-6">{person2.snippet}</td>
+                        </tr>
+                        <tr>
+                            <div className="my-3"></div>
+                        </tr>
+                        <tr>
+                            <td className="is-size-7 is-italic my-4 px-6">{person1.wiki}</td>
+                            <td className="is-size-7 is-italic	my-4 px-6">{person2.wiki}</td>
+                        </tr>
+                        <tr>
+                            <div className="my-3"></div>
+                        </tr>
+                        <tr>
+                            <td><a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a></td>
+                            <td><a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a></td>
+                        </tr>
 
-                    <h1 className="title is-3">OR</h1>
-
-                    <div className="column">
-                        <div className="image-box">
-                            <img src={person2.image} alt={`${person2.name}`} onClick={() => elo2(person1, person2)}/>
-                        </div>
-                        <p className="title is-4 mt-4">{person2.name}</p>
-                        <a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
                     </div> 
-            </>
+            </table>
         )
         
 }

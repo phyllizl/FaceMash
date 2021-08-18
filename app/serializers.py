@@ -8,4 +8,4 @@ class MpSerializer(serializers.HyperlinkedModelSerializer):
         # The model it will serialize
         model = Mp
         # the fields that should be included in the serialized output
-        fields = ['id', 'name', 'url', 'image', 'rank']
+        fields = ['id', 'name', 'url', 'image', 'rank', 'snippet', 'wiki']

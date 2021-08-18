@@ -6,7 +6,8 @@ import Generate2 from "./Generate2";
 const HomePage = () => {
 
     //our api
-    const url = "https://polar-stream-40791.herokuapp.com/mps/";
+    //const url = "https://polar-stream-40791.herokuapp.com/mps/";
+    const url = "http://localhost:8000/mps/";
 
     //set state to store all MPs
     const [everyone, setEveryone] = useState([]);
@@ -63,7 +64,7 @@ const HomePage = () => {
                     <h1 className="title is-2 mb-6"> Who's more Likeable? Click to Choose</h1>
 
                     <div className="container">
-                    <div className="columns is-mobile is-variable is-2 is-vcentered is-align-self-center">
+                    <div className="columns is-mobile is-variable is-vcentered is-align-self-center">
                     
                     {isLoading ? <div className="container">Loading</div> : <Generate2 props={everyone} />}
 
