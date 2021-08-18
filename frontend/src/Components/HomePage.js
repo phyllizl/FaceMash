@@ -12,6 +12,7 @@ const HomePage = () => {
     //set state to store all MPs
     const [everyone, setEveryone] = useState([]);
     const [isLoading, setLoading] = useState(true);
+    const [next, setNext] = useState(false);
 
     //get our database
     useEffect(() => {
@@ -22,17 +23,20 @@ const HomePage = () => {
             setLoading(false);
         }
         getEveryone();
-    }, [])
+    }, [next])
 
     const toggle = () => {
         const navbarMenu = document.getElementById("nav-links");
         navbarMenu.classList.toggle("is-active");
     };
 
-    
+    const nextFunction = () => {
+        setNext(!next);
+    }
+
     return (
         <>
-            <nav className="navbar has-shadow">
+            <nav className="navbar has-shadow is-white">
                 <div className="navbar-brand">
                     <a className="navbar-item" id="logo" href="/">
                         RANK YOUR MPs
@@ -64,13 +68,11 @@ const HomePage = () => {
                     <h1 className="title is-2 mb-6"> Who's more Likeable? Click to Choose</h1>
 
                     <div className="container">
-                    <div className="columns is-mobile is-multiline is-vcentered is-align-self-center">
-                    
-                    {isLoading ? <div className="container">Loading...</div> : <Generate2 props={everyone} />}
-
-                    {/* {everyone.length > 0 ? <Generate2 props={everyone} /> : <div>Loading</div>} */}
-
+                        {/*  className="columns is-mobile is-multiline is-vcentered is-align-self-center" */}
+                    <div>
+                        {isLoading ? <div className="container">Loading...</div> : <Generate2 everyone={everyone} next={nextFunction}/>}
                     </div>
+
                     </div>
                 </Route>
             </Switch>
