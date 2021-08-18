@@ -66,7 +66,7 @@ const HomePage = () => {
                     <div className="container">
                     <div className="columns is-mobile is-variable is-vcentered is-align-self-center">
                     
-                    {isLoading ? <div className="container">Loading</div> : <Generate2 props={everyone} />}
+                    {isLoading ? <div className="container">Loading...</div> : <Generate2 props={everyone} />}
 
                     {/* {everyone.length > 0 ? <Generate2 props={everyone} /> : <div>Loading</div>} */}
 

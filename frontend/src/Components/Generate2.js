@@ -131,43 +131,35 @@ const Generate2 = (prop) => {
     }
         
         return(
-            <table>
-                    <div className="column"> 
-                        <tr>
-                            <td className="image-box my-6"><img src={person1.image} alt={`${person1.name}`} onClick={() => elo(person1, person2)}/></td>
-                            <td className="image-box my-6"><img src={person2.image} alt={`${person2.name}`} onClick={() => elo2(person1, person2)}/></td>
-                        </tr>
-                        <tr>
-                            <div className="my-3"></div>
-                        </tr>
-                        <tr>
-                            <td className="title is-4">{person1.name}</td>
-                            <td className="title is-4">{person2.name}</td>
-                        </tr>
-                        <tr>
-                            <div className="my-3"></div>
-                        </tr>
-                        <tr>
-                            <td className="subtitle is-6">{person1.snippet}</td>
-                            <td className="subtitle is-6">{person2.snippet}</td>
-                        </tr>
-                        <tr>
-                            <div className="my-3"></div>
-                        </tr>
-                        <tr>
-                            <td className="is-size-7 is-italic my-4 px-6">{person1.wiki}</td>
-                            <td className="is-size-7 is-italic	my-4 px-6">{person2.wiki}</td>
-                        </tr>
-                        <tr>
-                            <div className="my-3"></div>
-                        </tr>
-                        <tr>
-                            <td><a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a></td>
-                            <td><a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a></td>
-                        </tr>
+            <>
+                    <div className="column is-half"> 
+                        <div className="image-box">
+                            <img src={person1.image} alt={`${person1.name}`} onClick={() => elo(person1, person2)}/>
+                        </div>
+                        <div className="content">
+                            <p className="title is-4 mt-4">{person1.name}</p>
+                            <div className="subtitle my-4 is-6">{person1.snippet}</div>
+                            <div className="is-size-7 is-italic my-4 px-6 wiki">{person1.wiki}</div>
+                        </div>
+                        <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
+                    </div>
 
+                    {/* <h1 className="title is-3">OR</h1> */}
+
+                    <div className="column is-half">
+                        <div className="image-box">
+                            <img src={person2.image} alt={`${person2.name}`} onClick={() => elo2(person1, person2)}/>
+                        </div>
+                        <div className="content">
+                            <p className="title is-4 mt-4">{person2.name}</p>
+                            <div className="subtitle my-4 is-6">{person2.snippet}</div>
+                            <div className="is-size-7 is-italic my-4 px-6 wiki">{person2.wiki}</div>
+                        </div>
+                        <a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
                     </div> 
-            </table>
+            </>
+           
+     
         )
         
 }

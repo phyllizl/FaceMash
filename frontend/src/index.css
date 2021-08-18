@@ -71,5 +71,10 @@ table.table tr:nth-child(n+1) td:first-child::before {
   -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
 }
 
-
+@media (max-width: 480px) {
+  div {
+    padding:0;
+    margin:0;
+  }
+}
 
