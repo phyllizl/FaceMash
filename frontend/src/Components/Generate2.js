@@ -7,8 +7,8 @@ const getRandomNum = (max) => {
 
 const Generate2 = (prop) => {
 
-        //const url = "https://polar-stream-40791.herokuapp.com/mps/";
-        const url = "http://localhost:8000/mps/";
+        const url = "https://polar-stream-40791.herokuapp.com/mps/";
+        //const url = "http://localhost:8000/mps/";
 
         let everyone = prop.props;
 
@@ -131,32 +131,50 @@ const Generate2 = (prop) => {
     }
         
         return(
-            <>
-                    <div className="column is-half"> 
-                        <div className="image-box">
+            <>          
+              
+                        {/* image */}
+                        <div className="image-box column is-half">
                             <img src={person1.image} alt={`${person1.name}`} onClick={() => elo(person1, person2)}/>
                         </div>
-                        <div className="content">
-                            <p className="title is-4 mt-4">{person1.name}</p>
-                            <div className="subtitle my-4 is-6">{person1.snippet}</div>
-                            <div className="is-size-7 is-italic my-4 px-6 wiki">{person1.wiki}</div>
-                        </div>
-                        <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
-                    </div>
-
-                    {/* <h1 className="title is-3">OR</h1> */}
-
-                    <div className="column is-half">
-                        <div className="image-box">
+                        <div className="image-box column is-half">
                             <img src={person2.image} alt={`${person2.name}`} onClick={() => elo2(person1, person2)}/>
                         </div>
-                        <div className="content">
-                            <p className="title is-4 mt-4">{person2.name}</p>
-                            <div className="subtitle my-4 is-6">{person2.snippet}</div>
-                            <div className="is-size-7 is-italic my-4 px-6 wiki">{person2.wiki}</div>
+
+                        {/* name */}
+                        <div className="title column is-half">
+                            {person1.name}
                         </div>
-                        <a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
-                    </div> 
+                        <div className="title column is-half">
+                            {person2.name}
+                        </div>
+
+                        {/* snippet */}
+                        <div className=" is-6 column is-half">
+                            {person1.snippet}   
+                        </div>
+                        <div className=" is-6 column is-half">
+                            {person2.snippet}   
+                        </div>
+
+                        {/* wiki */}
+                        <div className=" is-size-7 is-italic column is-half">
+                            {person1.wiki}   
+                        </div>
+                        <div className="is-size-7 is-italic column is-half">
+                            {person2.wiki}   
+                        </div>
+                        
+                        {/* href */}
+                        <div className="column is-half">
+                            <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
+                        </div>
+                        <div className="column is-half">
+                            <a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
+                        </div>
+         
+              
+            
             </>
            
      
