@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import useSound from "use-sound";
+import cheers from "./cheers.mp3";
+import LinkPreview from '@ashwamegh/react-link-preview';
+import '@ashwamegh/react-link-preview/dist/index.css';
 
 const getRandomNum = (max) => {
     return (Math.floor(Math.random() * max))
@@ -30,6 +34,7 @@ const Generate2 = ({everyone, next}) => {
         const [random, setRandom] = useState(getRandom1);
         const [random2, setRandom2] = useState(getRandom2);
         const [isClicked, setIsClicked] = useState(false);
+        const [isClicked2, setIsClicked2] = useState(false);
         
         //get your random people
         let person1 = everyone[random];
@@ -138,6 +143,7 @@ const Generate2 = ({everyone, next}) => {
         //get 2 new random numbers
         setRandom(getRandom1);
         setRandom2(getRandom2);
+        setIsClicked2(false);
     }
 
     //function to setState of Next, Random and Random2
@@ -159,16 +165,23 @@ const Generate2 = ({everyone, next}) => {
     const call2 = (person1, person2) => {
         setIsClicked(!isClicked);
         setTimeout(() => {elo(person1, person2)}, 1000);
+        play();
     }
 
     const call2Second = (person1, person2) => {
-        setIsClicked(!isClicked);
+        setIsClicked2(!isClicked);
         setTimeout(() => {elo2(person1, person2)}, 1000);
+        play();
     }
-        
+
+    //Play Sound
+    const [play, stop] = useSound(cheers);
+
         return(
             <>   
                 <div className="container bigdiv"> 
+
+                {/* FIRST PERSON */}
                 <div className="card">
                     <div className="card-image">
                     <motion.figure 
@@ -192,11 +205,12 @@ const Generate2 = ({everyone, next}) => {
                     <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
                 </div>
 
+                {/* SECOND PERSON */}
                 <div className="card">
                     <div className="card-image">
                     <motion.figure 
                         className="image-box"
-                        animate={isClicked ? "clicked" : "notClicked"}
+                        animate={isClicked2 ? "clicked" : "notClicked"}
                         variants={variants}
                         transition={bounceTransition}
                         >
@@ -212,14 +226,11 @@ const Generate2 = ({everyone, next}) => {
                     <div className="content is-size-7 is-italic wiki">
                         {person2.wiki}
                     </div>
-
-                    
                     <div className="modal" id="modal2">
                         <div className="modal-background"></div>
                         <div className="modal-content">
                             <div className="box">
-                                <iframe src={person1.url} title="Check Me Out">
-                                </iframe>
+                                <a href={person2.url} target="_blank" className="title is-5 mt-4">href</a>
                             </div> 
                         </div>
                         <button className="modal-close is-large" onClick={()=> document.getElementById("modal2").classList.toggle("is-active")}></button>
