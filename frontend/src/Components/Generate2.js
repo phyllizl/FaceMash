@@ -35,6 +35,9 @@ const Generate2 = ({everyone, next}) => {
         const [random2, setRandom2] = useState(getRandom2);
         const [isClicked, setIsClicked] = useState(false);
         const [isClicked2, setIsClicked2] = useState(false);
+        const [showDif, setShowDif] = useState(false);
+        const [A, setA] = useState(0);
+        const [B, setB] = useState(0);
         
         //get your random people
         let person1 = everyone[random];
@@ -44,6 +47,8 @@ const Generate2 = ({everyone, next}) => {
         //elo rating function -> If user chooses a
         const elo = (a, b) => {
         //console.log("1: original rankings: ", a.name, a.rank, b.name, b.rank)
+        let originalA = a.rank;
+        let originalB = b.rank;
         let aEstimated = 1/(1 + 10**((b.rank - a.rank)/400));
         let bEstimated = 1/(1 + 10**((a.rank - b.rank)/400));
         let ak = 0;
@@ -82,9 +87,28 @@ const Generate2 = ({everyone, next}) => {
         //call the update function to update database
         update(a);
         update(b);
-        setRandom(getRandom1);
-        setRandom2(getRandom2);
-        setIsClicked(false);
+        setShowDif(!showDif);
+        // setRandom(getRandom1);
+        // setRandom2(getRandom2);
+        //setIsClicked(false);
+        let newA = a.rank;
+        let newB = b.rank;
+
+        //create preview
+        let differenceA = newA - originalA; 
+        let differenceB = newB - originalB;
+        setA(differenceA);
+        setB(differenceB);
+        console.log('differences', differenceA, differenceB)
+
+        const delayFunction = () => {
+            setRandom(getRandom1);
+            setRandom2(getRandom2);
+            setIsClicked(false);
+            setShowDif(false);
+        }
+
+        setTimeout(() => delayFunction(), 1000);
     }
 
     //Function to edit mp ranking on selection
@@ -102,6 +126,8 @@ const Generate2 = ({everyone, next}) => {
     //We are going to try and hardcode this first. So this function will handle a situation when b is chosen. 
     //elo rating function -> If user chooses a
     const elo2 = (a, b) => {
+        let originalA = a.rank;
+        let originalB = b.rank;
         let aEstimated = 1/(1 + 10**((b.rank - a.rank)/400));
         let bEstimated = 1/(1 + 10**((a.rank - b.rank)/400));
         let ak = 0;
@@ -140,10 +166,26 @@ const Generate2 = ({everyone, next}) => {
         //update -> put request
         update(a);
         update(b);
-        //get 2 new random numbers
-        setRandom(getRandom1);
-        setRandom2(getRandom2);
-        setIsClicked2(false);
+        let newA = a.rank;
+        let newB = b.rank;
+        setShowDif(!showDif);
+
+        //create preview
+        let differenceA = newA - originalA; 
+        let differenceB = newB - originalB;
+        setA(differenceA);
+        setB(differenceB);
+        console.log('differences', differenceA, differenceB)
+
+        const delayFunction = () => {
+            setRandom(getRandom1);
+            setRandom2(getRandom2);
+            setIsClicked2(false);
+            setShowDif(false);
+        }
+
+        setTimeout(() => delayFunction(), 1000);
+    
     }
 
     //function to setState of Next, Random and Random2
@@ -164,13 +206,13 @@ const Generate2 = ({everyone, next}) => {
 
     const call2 = (person1, person2) => {
         setIsClicked(!isClicked);
-        setTimeout(() => {elo(person1, person2)}, 1000);
+        elo(person1, person2);
         play();
     }
 
     const call2Second = (person1, person2) => {
         setIsClicked2(!isClicked);
-        setTimeout(() => {elo2(person1, person2)}, 1000);
+        elo2(person1, person2);
         play();
     }
 
@@ -183,6 +225,9 @@ const Generate2 = ({everyone, next}) => {
                 <div className="columns is-multiline is-mobile">
                 <div className="column is-half">
               {/* FIRST PERSON */}
+              {showDif ? <div className="title" style={ (A>0) ? {color:"green"} : {color:"red"}}>
+                  {A} <br></br> New Elo Rating: {person1.rank}</div> 
+                  : null }
               <div className="card card-equal-height">
                 <div className="card-image">
                   <motion.figure
@@ -207,17 +252,7 @@ const Generate2 = ({everyone, next}) => {
                 </div>
                 <footer className="card-footer">
                 <div className="card-footer-item">
-                  <span
-                    className="button"
-                    onClick={() =>
-                      document
-                        .getElementById("modal2")
-                        .classList.toggle("is-active")
-                    }
-                  >
-                    Check Me Out
-                  </span>
-                  {/* <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a> */}
+                  <a href={person1.url} target="_blank" className="button">Check Me Out!</a>
                   </div>
                 </footer>
                 </div>
@@ -226,6 +261,7 @@ const Generate2 = ({everyone, next}) => {
 
               {/* SECOND PERSON */}
                 <div className="column is-half">
+                {showDif ? <div className="title" style={ (B>0) ? {color:"green"} : {color:"red"}}>{B} <br></br> New Elo Rating: {person2.rank}</div>: null }
               <div className="card card-equal-height">
                 <div className="card-image">
                   <motion.figure
@@ -250,39 +286,7 @@ const Generate2 = ({everyone, next}) => {
                 </div>
                 <footer className="card-footer">
                 <div className="card-footer-item">
-                  <div className="modal" id="modal2">
-                    <div className="modal-background"></div>
-                    <div className="modal-content">
-                      <div className="box">
-                        <a
-                          href={person2.url}
-                          target="_blank"
-                          className="title is-5 mt-4"
-                        >
-                          href
-                        </a>
-                      </div>
-                    </div>
-                    <span
-                      className="modal-close is-large"
-                      onClick={() =>
-                        document
-                          .getElementById("modal2")
-                          .classList.toggle("is-active")
-                      }
-                    ></span>
-                  </div>
-                  <button
-                    className="button"
-                    onClick={() =>
-                      document
-                        .getElementById("modal2")
-                        .classList.toggle("is-active")
-                    }
-                  >
-                    Check Me Out
-                  </button>
-                  {/* <a href={person2.url} target="_blank" className="title is-5 mt-4"></a> */}
+                  <a href={person2.url} target="_blank" className="button">Check Me Out!</a>
                   </div>
                 </footer>
               </div>

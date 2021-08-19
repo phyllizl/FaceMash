@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.parliament-logo {
+  margin-left: 20px;
+  width: 150px;
+  height: 130px;
+}
+
 .navbar-item {
   color: black;
 }
@@ -32,6 +38,11 @@ img {
   image-rendering: crisp-edges;
   -ms-interpolation-mode: nearest-neighbor; 
 }
+
+.for-a {
+  color: greenyellow;
+}
+
 
 .image-box:hover img {
   transform: scale(1.1);

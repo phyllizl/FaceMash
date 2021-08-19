@@ -35,7 +35,7 @@ const HomePage = () => {
     }
 
     return (
-        <>
+        <>  
             <nav className="navbar has-shadow is-white">
                 <div className="navbar-brand">
                     <a className="navbar-item" id="logo" href="/">
