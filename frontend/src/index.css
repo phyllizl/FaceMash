@@ -93,6 +93,7 @@ table.table tr:nth-child(n+1) td:first-child::before {
   height: 100%;
   width: 400px;
   flex-direction: column;
+  padding: 8px;
 }
 
 .card-footer {
