@@ -95,7 +95,7 @@ const Generate2 = ({everyone, next}) => {
         let newB = b.rank;
 
         //create preview
-        let differenceA = newA - originalA; 
+        let differenceA = '+' + (newA - originalA); 
         let differenceB = newB - originalB;
         setA(differenceA);
         setB(differenceB);
@@ -171,8 +171,8 @@ const Generate2 = ({everyone, next}) => {
         setShowDif(!showDif);
 
         //create preview
-        let differenceA = newA - originalA; 
-        let differenceB = newB - originalB;
+        let differenceA = (newA - originalA); 
+        let differenceB = '+' + (newB - originalB);
         setA(differenceA);
         setB(differenceB);
         console.log('differences', differenceA, differenceB)
