@@ -79,17 +79,24 @@ table.table tr:nth-child(n+1) td:first-child::before {
   }
 }
 
-.card {
-  height:600px;
-  width: 400px;
+/* .card {
+  height: 600px;
+  /* height: 100%; */
+  /* width: 400px;
   margin: 20px;
   padding: 8px;
-  display: inline-block;
+  display: inline-block; */
+/* } */
+
+.card-equal-height {
+  display: flex;
+  height: 100%;
+  width: 400px;
+  flex-direction: column;
 }
 
-iframe {
-  height:600px;
-  width: 400px;
+.card-footer {
+  margin-top: auto;
 }
 
 .bigdiv {
@@ -98,3 +105,15 @@ iframe {
   align-items: center;
   justify-content: center;
 }
+
+.skip {
+  margin-top: 20px;
+}
+
+/* 
+.bigdiv {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+} */

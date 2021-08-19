@@ -177,128 +177,125 @@ const Generate2 = ({everyone, next}) => {
     //Play Sound
     const [play, stop] = useSound(cheers);
 
-        return(
-            <>   
-                <div className="container bigdiv"> 
-
-                {/* FIRST PERSON */}
-                <div className="card">
-                    <div className="card-image">
-                    <motion.figure 
-                        className="image-box"
-                        animate={isClicked ? "clicked" : "notClicked"}
-                        variants={variants}
-                        transition={bounceTransition}
-                        >
-                            <img src={person1.image} alt={`${person1.name}`} onClick={() => call2(person1, person2)}/>
-                        </motion.figure>
-                    </div>
-                    <div className="card-content">
-                        <p className="title">{person1.name}</p>
-                    </div>
-                    <div className="content is-6 snippet">
-                        {person1.snippet}
-                    </div>
-                    <div className="content is-size-7 is-italic wiki">
-                        {person1.wiki}
-                    </div>
-                    <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
+        return (
+          <>
+            <div className="container bigdiv">
+                <div className="columns is-multiline is-mobile">
+                <div className="column is-half">
+              {/* FIRST PERSON */}
+              <div className="card card-equal-height">
+                <div className="card-image">
+                  <motion.figure
+                    className="image-box"
+                    animate={isClicked ? "clicked" : "notClicked"}
+                    variants={variants}
+                    transition={bounceTransition}
+                  >
+                    <img
+                      src={person1.image}
+                      alt={`${person1.name}`}
+                      onClick={() => call2(person1, person2)}
+                    />
+                  </motion.figure>
                 </div>
-
-                {/* SECOND PERSON */}
-                <div className="card">
-                    <div className="card-image">
-                    <motion.figure 
-                        className="image-box"
-                        animate={isClicked2 ? "clicked" : "notClicked"}
-                        variants={variants}
-                        transition={bounceTransition}
-                        >
-                            <img src={person2.image} alt={`${person2.name}`} onClick={() => call2Second(person1, person2)}/>
-                        </motion.figure>
-                    </div>
-                    <div className="card-content">
-                        <p className="title">{person2.name}</p>
-                    </div>
-                    <div className="content is-6">
-                        {person2.snippet}
-                    </div>
-                    <div className="content is-size-7 is-italic wiki">
-                        {person2.wiki}
-                    </div>
-                    <div className="modal" id="modal2">
-                        <div className="modal-background"></div>
-                        <div className="modal-content">
-                            <div className="box">
-                                <a href={person2.url} target="_blank" className="title is-5 mt-4">href</a>
-                            </div> 
-                        </div>
-                        <button className="modal-close is-large" onClick={()=> document.getElementById("modal2").classList.toggle("is-active")}></button>
-                    </div>
-                    <button onClick={()=> document.getElementById("modal2").classList.toggle("is-active")}>Check Me Out</button>
-                    <a href={person2.url} target="_blank" className="title is-5 mt-4"></a>
+                <div className="card-content">
+                  <p className="title">{person1.name}</p>
+                </div>
+                <div className="content is-6 snippet">{person1.snippet}</div>
+                <div className="content is-size-7 is-italic wiki">
+                  {person1.wiki}
+                </div>
+                <footer className="card-footer">
+                <div className="card-footer-item">
+                  <span
+                    className="button"
+                    onClick={() =>
+                      document
+                        .getElementById("modal2")
+                        .classList.toggle("is-active")
+                    }
+                  >
+                    Check Me Out
+                  </span>
+                  {/* <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a> */}
+                  </div>
+                </footer>
                 </div>
                 </div>
-                
+             
 
-
-                        {/* image */}
-                        {/* <motion.figure 
-                        className="image-box column is-half"
-                        animate={isClicked ? "clicked" : "notClicked"}
-                        variants={variants}
-                        transition={bounceTransition}
+              {/* SECOND PERSON */}
+                <div className="column is-half">
+              <div className="card card-equal-height">
+                <div className="card-image">
+                  <motion.figure
+                    className="image-box"
+                    animate={isClicked2 ? "clicked" : "notClicked"}
+                    variants={variants}
+                    transition={bounceTransition}
+                  >
+                    <img
+                      src={person2.image}
+                      alt={`${person2.name}`}
+                      onClick={() => call2Second(person1, person2)}
+                    />
+                  </motion.figure>
+                </div>
+                <div className="card-content">
+                  <p className="title">{person2.name}</p>
+                </div>
+                <div className="content is-6">{person2.snippet}</div>
+                <div className="content is-size-7 is-italic wiki">
+                  {person2.wiki}
+                </div>
+                <footer className="card-footer">
+                <div className="card-footer-item">
+                  <div className="modal" id="modal2">
+                    <div className="modal-background"></div>
+                    <div className="modal-content">
+                      <div className="box">
+                        <a
+                          href={person2.url}
+                          target="_blank"
+                          className="title is-5 mt-4"
                         >
-                            <img src={person1.image} alt={`${person1.name}`} onClick={() => call2(person1, person2)}/>
-                        </motion.figure>
-                        <div className="image-box column is-half">
-                            <img 
-                            src={person2.image} 
-                            alt={`${person2.name}`} 
-                            onClick={() => elo2(person1, person2)}
-                            
-                            />
-                        </div>
+                          href
+                        </a>
+                      </div>
+                    </div>
+                    <span
+                      className="modal-close is-large"
+                      onClick={() =>
+                        document
+                          .getElementById("modal2")
+                          .classList.toggle("is-active")
+                      }
+                    ></span>
+                  </div>
+                  <button
+                    className="button"
+                    onClick={() =>
+                      document
+                        .getElementById("modal2")
+                        .classList.toggle("is-active")
+                    }
+                  >
+                    Check Me Out
+                  </button>
+                  {/* <a href={person2.url} target="_blank" className="title is-5 mt-4"></a> */}
+                  </div>
+                </footer>
+              </div>
+              </div>
+              </div>
+         
+            </div>
 
-                        {/* name */}
-                        {/* <div className="title column is-half">
-                            {person1.name}
-                        </div>
-                        <div className="title column is-half">
-                            {person2.name}
-                        </div> */}
-
-                        {/* snippet */}
-                        {/* <div className=" is-6 column is-half">
-                            {person1.snippet}   
-                        </div>
-                        <div className=" is-6 column is-half">
-                            {person2.snippet}   
-                        </div> */}
-
-                        {/* wiki */}
-                        {/* <div className=" is-size-7 is-italic column is-half">
-                            {person1.wiki}   
-                        </div>
-                        <div className="is-size-7 is-italic column is-half">
-                            {person2.wiki}    */}
-                        {/* </div> */}
-                        
-                        {/* href */}
-                        {/* // <div className="column is-half">
-                        //     <a href={person1.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
-                        // </div>
-                        // <div className="column is-half">
-                        //     <a href={person2.url} target="_blank" className="title is-5 mt-4">Check Me Out!</a>
-                        // </div> */}
-          
-
-                    <button className="button" onClick={nextFunction}>Next</button>
-            
-            </>
-           
-     
-        )
+            <button className="skip button" onClick={nextFunction}>
+              Let Me Skip!
+            </button>
+          </>
+        );
         
 }
 
