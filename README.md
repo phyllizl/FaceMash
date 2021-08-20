@@ -17,6 +17,7 @@ RankYourMPs replicates FaceMash's functionality to create a rating system that g
 - Javascript
 - HTML
 - CSS
+- Framer
 - Bulma
 
 ## Getting Started
@@ -24,7 +25,7 @@ RankYourMPs replicates FaceMash's functionality to create a rating system that g
 ### An example of FaceMash: 
 ![01looks-v1](https://user-images.githubusercontent.com/78044759/130178774-7a7edfc8-b8aa-48c8-89a4-e1a4f433d81e.jpeg)
 
-### Wireframe of RankYourMP
+### Wireframe for RankYourMP
 
 1. Initial Frame
 <img width="600" alt="Screenshot 2021-08-20 at 12 00 59 PM" src="https://user-images.githubusercontent.com/78044759/130178854-57122bd0-1fba-4199-a27f-8fe2e16f1ec9.png">
