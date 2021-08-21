@@ -224,6 +224,7 @@ const Generate2 = ({everyone, next}) => {
             <div className="container bigdiv">
                 <div className="columns is-multiline is-mobile">
                 <div className="column is-half">
+                  
               {/* FIRST PERSON */}
               {showDif ? <div className="title" style={ (A>0) ? {color:"green"} : {color:"red"}}>
                   {A} <br></br> New Elo Rating: {person1.rank}</div> 
